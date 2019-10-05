@@ -10,10 +10,13 @@ import Dashboard from "./components/Dashboard.js";
 function App() {
   return (
     <Router>
-      <div>
-        <Link to="/login">Login</Link>
-        <Link to="/dashboard">Dashboard</Link>
-      </div>
+      <nav>
+        <h1>My Many Friends</h1>
+        <div className="links">
+          <Link to="/login">Login</Link>
+          <Link to="/dashboard">Dashboard</Link>
+        </div>
+      </nav>
       <Switch>
         <Route component={Login} />
         <Route path="/login" component={Login} />
