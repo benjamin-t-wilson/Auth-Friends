@@ -15,10 +15,10 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setLoginStatus(true);
     axiosWithAuth()
       .post("/login", loginValue)
       .then(res => {
-        setLoginStatus(true);
         localStorage.setItem("token", res.data.payload);
       })
       .then(() => {
