@@ -130,7 +130,7 @@ table {
   font-size: 1rem;
   width: 80%;
   margin: 0 auto;
-  h1 {
+  h1, h2 {
     font-size: 1.5rem;
     font-weight: bold;
   }
@@ -246,9 +246,28 @@ table {
   }
   .friendsList{
     display: flex;
-    flex-flow: row-reverse wrap;
+    flex-flow: row wrap;
   }
   .friend{
-    width: 49%;
+    width: 44%;
+    padding: 25px;
+    margin: 3%;
+    box-shadow: 2px 2px 5px #777;
+    border-radius: 30px;
+    p{
+      margin: 15px 0;
+    }
+    .buttons{
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+    }
+    input{
+      border: 0;
+      width: 75%;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px #777;
+    }
   }
 }

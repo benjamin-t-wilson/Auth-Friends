@@ -78,6 +78,7 @@ const Friend = props => {
           email
         )}
       </p>
+      <div className="buttons">
       <button onClick={handleDelete}>Delete Friend</button>
       <button
         onClick={() => {
@@ -87,6 +88,7 @@ const Friend = props => {
       >
         {editing ? "Submit Changes" : "Edit Friend"}
       </button>
+      </div>
     </div>
   );
 };
