@@ -40,7 +40,7 @@ const Friend = props => {
 
   return (
     <div className="friend">
-      <h1>
+      <h2>
         {editing ? (
           <input
             type="text"
@@ -51,7 +51,7 @@ const Friend = props => {
         ) : (
           name
         )}
-      </h1>
+      </h2>
       <p>
         Age:{" "}
         {editing ? (
