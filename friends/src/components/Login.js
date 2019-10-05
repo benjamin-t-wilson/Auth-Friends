@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "./axiosWithAuth.js";
-import { props } from "bluebird";
 
-const Login = () => {
+const Login = props => {
   const loginObj = {
-    login: "",
+    username: "",
     password: ""
   };
   const [loginValue, setLoginValue] = useState(loginObj);
@@ -20,7 +19,7 @@ const Login = () => {
       .post("/login", loginValue)
       .then(res => {
         setLoginStatus(true);
-        console.log(res);
+        localStorage.setItem("token", res.data.payload);
       })
       .then(() => {
         setLoginValue(loginObj);
@@ -35,10 +34,10 @@ const Login = () => {
     <section className="login">
       {!loginStatus ? (
         <form onSubmit={handleSubmit}>
-          <label htmlFor="login">Username:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
-            name="login"
+            name="username"
             placeholder="LambdaSchoolRox11235"
             value={loginValue.login}
             onChange={handleChange}
