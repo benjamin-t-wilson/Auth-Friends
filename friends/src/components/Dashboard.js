@@ -3,6 +3,7 @@ import { axiosWithAuth } from "./axiosWithAuth.js";
 import Friend from "./Friend.js";
 
 const Dashboard = () => {
+  //declare an empty object, makes it easy to return to blank later
   const friendObj = {
     id: "",
     name: "",
@@ -10,25 +11,33 @@ const Dashboard = () => {
     email: ""
   };
 
+  //declare all states and constants
   const [friendValue, setFriendValue] = useState(friendObj);
   const [friendsList, setFriendsList] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
 
+  //typical handle change
   const handleChange = e => {
     setFriendValue({ ...friendValue, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
+    //submit type buttons/forms refresh, prevent that.
     e.preventDefault();
+    //spread in current state and change the id to numbers :)
     setFriendValue({ ...friendValue, id: Date.now() });
+    //set updating state for ternary flavor
     setIsUpdating(true);
     axiosWithAuth()
       .post("/friends", friendValue)
       .then(res => {
+        //resolution returns new array, set to state for re-render
         setFriendsList(res.data);
         setIsUpdating(false);
       })
       .then(() => {
+        //after finishing first task list, reset state
+        //to my handy dandy empty object
         setFriendValue(friendObj);
       })
       .catch(err => {
@@ -36,6 +45,8 @@ const Dashboard = () => {
       });
   };
 
+  //upon rendering the page, set editing for ternary flavor
+  //get the array of friends and set to state for mappiness
   useEffect(() => {
     setIsUpdating(true);
     axiosWithAuth()

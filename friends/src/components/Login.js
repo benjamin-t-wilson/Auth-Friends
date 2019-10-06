@@ -2,19 +2,25 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "./axiosWithAuth.js";
 
 const Login = props => {
+  //declare an empty obj for easiness
   const loginObj = {
     username: "",
     password: ""
   };
+
+  //declare states and constants
   const [loginValue, setLoginValue] = useState(loginObj);
   const [loginStatus, setLoginStatus] = useState(false);
 
+  //typical handlechange
   const handleChange = e => {
     setLoginValue({ ...loginValue, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
+    //all submits refresh the page, prevent that
     e.preventDefault();
+    //set editing to true for flavor
     setLoginStatus(true);
     axiosWithAuth()
       .post("/login", loginValue)
@@ -22,6 +28,7 @@ const Login = props => {
         localStorage.setItem("token", res.data.payload);
       })
       .then(() => {
+        //after setting the token, clear state object and redirect to protected route
         setLoginValue(loginObj);
         props.history.push("/dashboard");
       })
